@@ -9,7 +9,7 @@ class Errorable {
 
     TValue value_;
     TError errorCode_;
-    std::string errorMessage_;
+    TMessage errorMessage_;
     bool hasValue_;
 
 public:
