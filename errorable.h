@@ -1,7 +1,8 @@
 #include <string>
 #include <type_traits>
 
-template<class TValue, class TError>
+//defaultErrorCode is just so this class can have a default constructor
+template<class TValue, class TError, TError defaultErrorCode>
 class Errorable {
     static_assert(std::is_default_constructible<TValue>(), "TValue must have a default constructor");
     static_assert(std::is_enum<TError>(), "TError must be an enum or enum class");
@@ -42,6 +43,12 @@ public:
         errorMessage_ = errorMessage;
     }
 
-    Errorable(TValue value) : value_(value), hasValue_(true) {}
+    Errorable(TValue value) : value_{value}, hasValue_{true} {}
     Errorable(TError errorCode, std::string errorMessage = "") : errorCode_{errorCode}, errorMessage_{errorMessage} {}
+    Errorable() : errorCode_{defaultErrorCode}, errorMessage_{""} {}
+};
+
+template<class TValue, class TError>
+class Errorable : public Errorable<TValue, TError, static_cast<TError>(0)> {
+    Errorable() = delete;
 };

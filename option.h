@@ -26,6 +26,6 @@ public:
         hasValue = false;
     }
 
-    constexpr Option(T value_) : value(value_), hasValue(true) {}
-    constexpr Option() : hasValue(false) {}
+    constexpr Option(T value_) : value{value_}, hasValue{true} {}
+    constexpr Option() : hasValue{false} {}
 };
