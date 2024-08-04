@@ -8,24 +8,24 @@ class Option {
     bool hasValue;
 
 public:
-    constexpr bool has() const {
+    bool has() const {
         return hasValue;
     }
 
     //returns value if has, else default
-    constexpr T get(T default_) const {
+    T get(T default_) const {
         return hasValue ? value : default_;
     }
 
-    constexpr void set(T value_) {
+    void set(T value_) {
         value = value_;
         hasValue = true;
     }
 
-    constexpr void empty() {
+    void empty() {
         hasValue = false;
     }
 
-    constexpr Option(T value_) : value{value_}, hasValue{true} {}
-    constexpr Option() : hasValue{false} {}
+    Option(T value_) : value{value_}, hasValue{true} {}
+    Option() : hasValue{false} {}
 };
