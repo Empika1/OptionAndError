@@ -14,36 +14,36 @@ class Errorable {
 
 public:
     //if the class has a value
-    bool hasValue() const {
+    constexpr bool hasValue() const {
         return hasValue_;
     }
 
     //returns value if hasValue, else default
-    TValue getValue(TValue default_) const {
+    constexpr TValue getValue(TValue default_) const {
         return hasValue_ ? value_ : default_;
     }
 
     //returns errorCode if !hasValue else default
-    TError getErrorCode(TError default_) const {
+    constexpr TError getErrorCode(TError default_) const {
         return !hasValue_ ? errorCode_ : default_;
     }
 
     //returns errorCode if !hasValue else default
-    std::string getErrorMessage(std::string default_) const {
+    constexpr std::string getErrorMessage(std::string default_) const {
         return !hasValue_ ? errorMessage_ : default_;
     }
 
-    void setValue(TValue value) {
+    constexpr void setValue(TValue value) {
         value_ = value;
         hasValue_ = true;
     }
 
-    void setError(TError errorCode, std::string errorMessage = "") {
+    constexpr void setError(TError errorCode, std::string errorMessage = "") {
         errorCode_ = errorCode;
         errorMessage_ = errorMessage;
     }
 
-    Errorable(TValue value) : value_{value}, hasValue_{true} {}
-    Errorable(TError errorCode, std::string errorMessage = "") : errorCode_{errorCode}, errorMessage_{errorMessage}, hasValue_{false} {}
-    Errorable() : errorCode_{defaultErrorCode}, errorMessage_{""}, hasValue_{false} {}
+    constexpr Errorable(TValue value) : value_{value}, hasValue_{true} {}
+    constexpr Errorable(TError errorCode, std::string errorMessage = "") : errorCode_{errorCode}, errorMessage_{errorMessage}, hasValue_{false} {}
+    constexpr Errorable() : errorCode_{defaultErrorCode}, errorMessage_{""}, hasValue_{false} {}
 };
