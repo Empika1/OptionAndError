@@ -44,11 +44,6 @@ public:
     }
 
     Errorable(TValue value) : value_{value}, hasValue_{true} {}
-    Errorable(TError errorCode, std::string errorMessage = "") : errorCode_{errorCode}, errorMessage_{errorMessage} {}
-    Errorable() : errorCode_{defaultErrorCode}, errorMessage_{""} {}
-};
-
-template<class TValue, class TError>
-class Errorable : public Errorable<TValue, TError, static_cast<TError>(0)> {
-    Errorable() = delete;
+    Errorable(TError errorCode, std::string errorMessage = "") : errorCode_{errorCode}, errorMessage_{errorMessage}, hasValue_{false} {}
+    Errorable() : errorCode_{defaultErrorCode}, errorMessage_{""}, hasValue_{false} {}
 };
